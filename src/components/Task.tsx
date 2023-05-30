@@ -1,19 +1,15 @@
-import { ClipboardText } from 'phosphor-react'
+import { Trash } from "phosphor-react";
 import styles from './Task.module.css'
 
-export function Task() {
+export function Task () {
   return (
-    <>
-      <div className={styles.container}>
-        <span>Tarefas criadas<div>0</div></span>
+    <div className={styles.container}>
+      <input type="radio" />
+      <label>{` `}Integer urna interdum massa libero auctor neque Integer urna interdum massa libero auctor neque.</label>
+      <button className={styles.trash}>
+        <Trash size={24} color="var(--gray-300)"/>
+      </button>
       
-        <span>Concluídas<div>0</div></span>      
-      </div>
-      <div className={styles.content}>
-        <ClipboardText size={82} color="#333333"/>
-        <span>Você ainda não tem tarefas cadastradas</span>
-        <p>Crie tarefas e organize seus itens a fazer</p>
-      </div>
-    </>
+    </div>
   )
 }
