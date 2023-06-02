@@ -2,34 +2,46 @@ import { ClipboardText, PlusCircle } from 'phosphor-react'
 import styles from './NewTask.module.css'
 import { Task } from './Task'
 import { useState } from 'react'
-import { v4 as uuidv4 } from 'uuid';
 
 interface Task {
-  id: number;
   content: string;
   isFinished: boolean;
 }
 
 export function NewTask() {
   const [tasks, setTasks] = useState<Task[]>([])
+  const [newTask, setNewTask] = useState("")
 
   function handleNewTask () {
-    event?.preventDefault()
 
     const newTasks: Task = {
-      id: tasks.length + 1,
-      content: 'Nova Tarefa',
-      isFinished: true,
+      content: newTask,
+      isFinished: false,
     };
 
     // Atualize o estado das tarefas adicionando a nova tarefa ao array existente
     setTasks([...tasks, newTasks]);
+    setNewTask("")
+  }
+
+  function handleNewTaskChanged(event: React.ChangeEvent<HTMLInputElement>) {
+    setNewTask(event.target.value)
+  }
+
+  function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
+    if (event.key === "Enter") {
+      handleNewTask();
+    }
+  }
+
+  function handleDeleteTask(contentToDelete : string) {
+    setTasks(tasks.filter(task => task.content !==  contentToDelete))
   }
 
   return (
     <>
     <div className={styles.newTask}>
-      <input type="text" placeholder=" Adicione uma nova tarefa"/>
+      <input type="text" placeholder="  Adicione uma nova tarefa..." name="content" onChange={handleNewTaskChanged} onKeyDown={handleKeyDown}/>
       <button type="button" onClick={handleNewTask}>
         Criar 
         <PlusCircle size={28} />
@@ -45,7 +57,7 @@ export function NewTask() {
     {tasks.length ? (
         <div>
           {tasks.map(task => (
-            <Task key={uuidv4()} id={uuidv4()} content="nova tarefa" isFinished={true} />
+            <Task key={task.content} content={task.content} isFinished={task.isFinished} onDelete={handleDeleteTask} />
           ))}
         </div>
     ) : (
