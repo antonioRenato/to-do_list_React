@@ -1,8 +1,11 @@
 import { ClipboardText } from 'phosphor-react'
 import styles from './TaskCount.module.css'
 import { Task } from './Task'
+import { useState } from 'react'
 
 export function TaskCount() {
+  const [task, setTask] = useState()
+
   return (
     <>
       <div className={styles.container}>
