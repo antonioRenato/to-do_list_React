@@ -13,19 +13,20 @@ export function NewTask() {
   const [newTask, setNewTask] = useState("")
 
   function handleNewTask () {
-
     const newTasks: Task = {
       content: newTask,
       isFinished: false,
     };
 
     // Atualize o estado das tarefas adicionando a nova tarefa ao array existente
-    setTasks([...tasks, newTasks]);
+    setTasks([...tasks, newTasks])
     setNewTask("")
   }
 
   function handleNewTaskChanged(event: React.ChangeEvent<HTMLInputElement>) {
-    setNewTask(event.target.value)
+    const value = event.target.value
+    
+    setNewTask(value)
   }
 
   function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
@@ -35,14 +36,14 @@ export function NewTask() {
   }
 
   function handleDeleteTask(contentToDelete : string) {
-    setTasks(tasks.filter(task => task.content !==  contentToDelete))
+    setTasks(tasks.filter(task => task.content !== contentToDelete))
   }
 
   return (
     <>
     <div className={styles.newTask}>
       <input type="text" placeholder="  Adicione uma nova tarefa..." name="content" onChange={handleNewTaskChanged} onKeyDown={handleKeyDown}/>
-      <button type="button" onClick={handleNewTask}>
+      <button type="button" onClick={handleNewTask} >
         Criar 
         <PlusCircle size={28} />
       </button>
@@ -57,7 +58,7 @@ export function NewTask() {
     {tasks.length ? (
         <div>
           {tasks.map(task => (
-            <Task key={task.content} content={task.content} isFinished={task.isFinished} onDelete={handleDeleteTask} />
+            <Task key={task.content} taskObj={{ content: task.content , isFinished: task.isFinished }} onDelete={handleDeleteTask} />
           ))}
         </div>
     ) : (
