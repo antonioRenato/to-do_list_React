@@ -34,7 +34,7 @@ export function NewTask() {
     const value = event.target.value
     
     setNewTask(value)
-    setIsValid(/^[a-zA-Z]+$/.test(value));
+    setIsValid(value.trim() !== "");
   }
 
   function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
