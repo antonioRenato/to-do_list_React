@@ -52,6 +52,11 @@
   cursor: pointer;
 }
 
+.newTask button:disabled {
+  background: var(--gray-300);
+  cursor: not-allowed;
+}
+
 .container {
   display: flex;
   justify-content: space-between;
@@ -90,6 +95,10 @@
   background-color: var(--gray-400);
 }
 
+.invalidInput {
+  border-color: red;
+}
+
 .container span{
   display: flex;
   gap: 0.4rem;
@@ -103,7 +112,7 @@
 }
 
 .container span div{
-  width: 25px;
+  width: 48px;
   height: 19px;
 
   display: flex;
@@ -136,4 +145,18 @@
   font-size: 18px;
   font-weight: 700;
   color: var(--gray-300);
+}
+
+.validationMessage {
+  display : flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 300px;
+
+  margin-top: 0.7rem;
+  margin-left: 32.3rem;
+
+  color: var(--red-500);
+  font-size: 14px;
 }

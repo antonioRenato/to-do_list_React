@@ -16,12 +16,12 @@
   margin-bottom: 0.8rem;
 }
 
-.container label {
-  display: inline-block;
+.contLabel {
+  display: flex;
   cursor: pointer;
   position: relative;
-
-  max-width: 630px;
+  max-width: 600px;
+  word-break: break-word;
 }
 
 .container input[type="checkbox"] {
