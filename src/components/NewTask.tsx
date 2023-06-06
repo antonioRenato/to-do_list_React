@@ -25,7 +25,7 @@ export function NewTask() {
     };
 
     // Atualize o estado das tarefas adicionando a nova tarefa ao array existente
-    setTasks([...tasks, newTasks])
+    setTasks([newTasks, ...tasks])
     setNewTask("")
     setIsValid(true);
   }
